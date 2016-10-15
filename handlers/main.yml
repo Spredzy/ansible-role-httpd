@@ -15,9 +15,11 @@
 
 ---
 - name: restart apache httpd
-  service: name={{ httpd_package_name }}
-           state=restarted
+  service:
+    name: '{{ httpd_service_name }}'
+    state: restarted
 
 - name: reload apache httpd
-  service: name={{ httpd_package_name }}
-           state=reloaded
+  service:
+    name: '{{ httpd_service_name }}'
+    state: reloaded

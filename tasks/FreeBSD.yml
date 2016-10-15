@@ -14,3 +14,25 @@
 # limitations under the License.
 
 ---
+- name: Enable specific module
+  lineinfile:
+    dest: '{{ httpd_configuration_file_path }}/httpd.conf'
+    line: 'LoadModule {{ item }}_module libexec/apache24/mod_{{ item }}.so'
+  with_items: '{{ httpd_modules }}'
+  notify: restart apache httpd
+
+
+- name: Download php module
+  package:
+    name: '{{ php_module }}'
+    state: present
+  when: php_enable
+  notify: restart apache httpd
+
+
+- name: Write php.conf
+  copy:
+    src: FreeBSD/php.conf
+    dest: '{{ httpd_configuration_file_path }}/Includes/php.conf'
+  when: php_enable
+  notify: restart apache httpd

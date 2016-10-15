@@ -15,3 +15,5 @@
 
 ---
 httpd_package_name: apache24
+httpd_service_name: apache24
+httpd_configuration_file_path: /usr/local/etc/apache24

@@ -1,0 +1,6 @@
+---
+php_enable: true
+php_module: mod_php56
+
+httpd_modules:
+  - rewrite
